@@ -11,7 +11,7 @@ A python tool used to sync cloud servers with github repos, with pull and push c
   ```json
     "github_email": "your github account's email",
     "github_username": "the username of the github account that made the repo you are trying to sync with",
-    "github_token": "github token. get one [here](https://github.com/settings/tokens)",
+    "github_token": "github token. get one here: https://github.com/settings/tokens",
     "repo_name": "the name of the repository you are trying to sync with",
     "run_cmd": "the command to run after the sync is complete. for example `python3 main.py`"
   ```
