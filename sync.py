@@ -5,16 +5,33 @@ import sys
 import time
 from github import Github
 import select
+import json
+
+if os.path.exists(os.getcwd() + "/sync_config.json"):
+    with open("./sync_config.json") as f:
+        configData = json.load(f)
+else:
+    configTemplate = {
+    "github_email": "",
+    "github_username": "",
+    "github_token": "",
+    "repo_name": "",
+    "run_cmd": ""
+    }
+    with open(os.getcwd() + "/sync_config.json", "w+") as f:
+        json.dump(configTemplate, f, indent=4)
+    print("First time setup. Please take a look at sync_config.json")
+    exit()
 
 # Replace with your Github username and Github token
-EMAIL = "email@example.com"
-USERNAME = "user"
-TOKEN = "xxxx"
+EMAIL = configData["github_email"]
+USERNAME = configData["github_username"]
+TOKEN = configData["github_token"]
 # Replace with the name of the repo you want to sync
-REPO_NAME = "repo name"
+REPO_NAME = configData["repo_name"]
 
 #command to run after the sync is complete
-run_cmd = "python main.py"
+run_cmd = configData["run_cmd"]
 
 # Check if Git is installed, install it if not
 if platform.system() == "Linux":
