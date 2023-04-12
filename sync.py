@@ -67,7 +67,7 @@ if not os.path.exists(REPO_NAME):
     clone_url = repo.clone_url.replace("https://", f"https://{USERNAME}:{TOKEN}@")
     os.system(f"git clone {clone_url} .")
     if pipinstall == "True":
-        print("First time setup: installing pip requirementx")
+        print("First time setup: installing pip requirements")
         os.system(f"python3 -m pip install -r {base_folder}/{REPO_NAME}/requirements.txt")
 else:
     # If the repository already exists, change to its directory
