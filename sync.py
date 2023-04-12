@@ -6,6 +6,9 @@ import time
 from github import Github
 import select
 import json
+from pathlib import Path
+
+base_folder = Path(__file__).parent.resolve()
 
 if os.path.exists(os.getcwd() + "/sync_config.json"):
     with open("./sync_config.json") as f:
@@ -101,5 +104,8 @@ else:
         # If there are no uncommitted changes, simply pull from Github
         os.system("git pull")
     
+# go to repo dir
+repo_dir = f"{base_folder}/{REPO_NAME}"
+os.chdir(repo_dir)
 # Start the main.py file
 os.system(run_cmd)
