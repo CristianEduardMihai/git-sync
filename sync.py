@@ -36,6 +36,8 @@ REPO_NAME = configData["repo_name"]
 #command to run after the sync is complete
 run_cmd = configData["run_cmd"]
 
+pipinstall = configData["install_pip_req"]
+
 # Check if Git is installed, install it if not
 if platform.system() == "Linux":
     result = subprocess.run(['dpkg', '-s', 'git'], capture_output=True)
@@ -64,6 +66,9 @@ if not os.path.exists(REPO_NAME):
     repo = user.get_repo(REPO_NAME)
     clone_url = repo.clone_url.replace("https://", f"https://{USERNAME}:{TOKEN}@")
     os.system(f"git clone {clone_url} .")
+    if pipinstall:
+        print("First time setup: installing pip requirementx")
+        os.system(f"python3 -m pip install -r {base_folder}/{REPO_NAME}/requirements.txt")
 else:
     # If the repository already exists, change to its directory
     os.chdir(REPO_NAME)

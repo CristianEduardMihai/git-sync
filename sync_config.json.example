@@ -3,5 +3,6 @@
     "github_username": "",
     "github_token": "",
     "repo_name": "",
-    "run_cmd": ""
+    "run_cmd": "",
+    "install_pip_req": False
 }
